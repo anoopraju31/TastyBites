@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { Image, ScrollView, Text, TextInput, View } from 'react-native'
-import {
-	widthPercentageToDP as wp,
-	heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import axios from 'axios'
 
@@ -32,6 +29,7 @@ const HomeScreen = () => {
 	useEffect(() => {
 		getCategories()
 	}, [])
+
 	return (
 		<View className='flex-1 bg-white'>
 			<StatusBar style='dark' />
