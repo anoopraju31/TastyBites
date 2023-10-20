@@ -23,6 +23,25 @@ const HomeScreen = () => {
 					/>
 					<BellIcon size={hp(4)} color='gray' />
 				</View>
+
+				{/* Greeting */}
+				<View className='mx-4 space-y-2 mb-2'>
+					<Text style={{ fontSize: hp(1.7) }} className='text-neutral-600'>
+						<View>
+							<Text
+								className='font-semibold text-neutral-600'
+								style={{ fontSize: hp(3.8) }}>
+								Make your own food,
+							</Text>
+						</View>
+
+						<Text
+							className='font-semibold text-neutral-600'
+							style={{ fontSize: hp(3.8) }}>
+							Stay at <Text className='text-amber-400'> Home</Text>
+						</Text>
+					</Text>
+				</View>
 			</ScrollView>
 		</View>
 	)
