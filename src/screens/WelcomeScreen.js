@@ -6,8 +6,10 @@ import {
 	heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native'
 
 const WelcomeScreen = () => {
+	const navigation = useNavigation()
 	const ring1Padding = useSharedValue(0)
 	const ring2Padding = useSharedValue(0)
 
@@ -15,14 +17,22 @@ const WelcomeScreen = () => {
 		ring1Padding.value = 0
 		ring2Padding.value = 0
 
-		setTimeout(
+		const ring1Timer = setTimeout(
 			() => (ring1Padding.value = withSpring(ring1Padding.value + hp(5))),
 			100,
 		)
-		setTimeout(
+		const ring2Timer = setTimeout(
 			() => (ring2Padding.value = withSpring(ring2Padding.value + hp(5.5))),
 			300,
 		)
+
+		const navigationTimer = setTimeout(() => navigation.navigate('Home'), 2500)
+
+		return () => {
+			clearTimeout(ring1Timer)
+			clearTimeout(ring2Timer)
+			clearTimeout(navigationTimer)
+		}
 	}, [])
 
 	return (
