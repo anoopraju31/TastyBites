@@ -8,7 +8,7 @@ import {
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import axios from 'axios'
 
-import { Categories } from '../components'
+import { Categories, Recipes } from '../components'
 
 const HomeScreen = () => {
 	const [categories, setCategories] = useState([])
@@ -90,6 +90,11 @@ const HomeScreen = () => {
 							setActiveCategory={setActiveCategory}
 						/>
 					)}
+				</View>
+
+				{/* Recpies */}
+				<View>
+					<Recipes />
 				</View>
 			</ScrollView>
 		</View>
