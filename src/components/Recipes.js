@@ -2,7 +2,7 @@ import { Text, View } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import MasonryList from '@react-native-seoul/masonry-list'
 import { mealData } from '../constants'
-import { RecipeCard } from './'
+import RecipeCard from './RecipeCard'
 
 const Recipes = () => {
 	return (
@@ -19,7 +19,9 @@ const Recipes = () => {
 					keyExtractor={(item) => item.name}
 					numColumns={2}
 					showsVerticalScrollIndicator={false}
-					renderItem={({ item }) => <RecipeCard />}
+					renderItem={({ item, index }) => (
+						<RecipeCard item={item} index={index} />
+					)}
 					//   refreshing={isLoadingNext}
 					//   onRefresh={() => refetch({first: ITEM_CNT})}
 					onEndReachedThreshold={0.1}
