@@ -59,7 +59,7 @@ const WelcomeScreen = () => {
 					style={{ fontSize: hp(7) }}
 					className='font-bold text-white tracking-widest'>
 					{' '}
-					Foody{' '}
+					TastyBites{' '}
 				</Text>
 				<Text
 					style={{ fontSize: hp(2.5) }}

@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import {
-	ActivityIndicator,
-	Image,
-	ScrollView,
-	Text,
-	TextInput,
-	View,
-} from 'react-native'
+import { Image, ScrollView, Text, TextInput, View } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import axios from 'axios'
@@ -125,7 +118,7 @@ const HomeScreen = () => {
 
 				{/* Recpies */}
 				<View>
-					{recipes?.length !== 0 ? (
+					{recipes?.length !== 0 && isLoading ? (
 						<Recipes recipes={recipes} />
 					) : (
 						<Loading
