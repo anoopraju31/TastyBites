@@ -10,6 +10,7 @@ import { Categories, Recipes } from '../components'
 const HomeScreen = () => {
 	const [categories, setCategories] = useState([])
 	const [activeCategory, setActiveCategory] = useState('')
+	const [recipes, setRecipes] = useState([])
 
 	const getCategories = async () => {
 		try {
@@ -26,9 +27,27 @@ const HomeScreen = () => {
 		}
 	}
 
+	const getRecipes = async (category) => {
+		try {
+			const res = await axios.get(
+				`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
+			)
+
+			if (res && res.data) {
+				setRecipes(res.data.meals)
+			}
+		} catch (error) {
+			console.error('error: ', error.message)
+		}
+	}
+
 	useEffect(() => {
 		getCategories()
 	}, [])
+
+	useEffect(() => {
+		if (activeCategory !== '') getRecipes(activeCategory)
+	}, [activeCategory])
 
 	return (
 		<View className='flex-1 bg-white'>
@@ -91,9 +110,7 @@ const HomeScreen = () => {
 				</View>
 
 				{/* Recpies */}
-				<View>
-					<Recipes />
-				</View>
+				<View>{recipes?.length !== 0 && <Recipes recipes={recipes} />}</View>
 			</ScrollView>
 		</View>
 	)

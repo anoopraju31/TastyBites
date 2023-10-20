@@ -1,10 +1,9 @@
-import { Image, Pressable, Text, View } from 'react-native'
+import { Image, Pressable, Text } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 
 const RecipeCard = ({ item, index }) => {
 	const isEven = index % 2 === 0
-	console.log(index)
 	return (
 		<Animated.View
 			entering={FadeInDown.delay(index * 100)
@@ -19,7 +18,7 @@ const RecipeCard = ({ item, index }) => {
 				}}
 				className='flex justify-center mb-4 space-y-1'>
 				<Image
-					source={{ uri: item.image }}
+					source={{ uri: item.strMealThumb }}
 					style={{
 						width: '100%',
 						height: hp(index % 3 === 0 ? 25 : 35),
@@ -31,7 +30,9 @@ const RecipeCard = ({ item, index }) => {
 				<Text
 					className='font-semibold ml-2 text-neutral-600 truncate'
 					style={{ fontSize: hp(1.5) }}>
-					{item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}
+					{item.strMeal.length > 20
+						? item.strMeal.slice(0, 20) + '...'
+						: item.strMeal}
 				</Text>
 			</Pressable>
 		</Animated.View>
