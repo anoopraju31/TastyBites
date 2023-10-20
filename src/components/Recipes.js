@@ -19,9 +19,7 @@ const Recipes = () => {
 					keyExtractor={(item) => item.name}
 					numColumns={2}
 					showsVerticalScrollIndicator={false}
-					renderItem={({ item, index }) => (
-						<RecipeCard item={item} index={index} />
-					)}
+					renderItem={({ item, i }) => <RecipeCard item={item} index={i} />}
 					//   refreshing={isLoadingNext}
 					//   onRefresh={() => refetch({first: ITEM_CNT})}
 					onEndReachedThreshold={0.1}
