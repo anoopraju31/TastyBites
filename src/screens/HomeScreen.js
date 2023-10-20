@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { Image, ScrollView, Text, TextInput, View } from 'react-native'
 import {
@@ -8,6 +9,7 @@ import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import { Categories } from '../components'
 
 const HomeScreen = () => {
+	const [activeCategory, setActiveCategory] = useState('Beef')
 	return (
 		<View className='flex-1 bg-white'>
 			<StatusBar style='dark' />
@@ -59,7 +61,10 @@ const HomeScreen = () => {
 
 				{/* Categories */}
 				<View>
-					<Categories />
+					<Categories
+						activeCategory={activeCategory}
+						setActiveCategory={setActiveCategory}
+					/>
 				</View>
 			</ScrollView>
 		</View>

@@ -7,7 +7,7 @@ import {
 
 import { categoryData } from '../constants'
 
-const Categories = () => {
+const Categories = ({ activeCategory, setActiveCategory }) => {
 	return (
 		<View>
 			<ScrollView
@@ -18,9 +18,14 @@ const Categories = () => {
 					paddingHorizontal: 15,
 				}}>
 				{categoryData.map((category, idx) => {
+					let isActive = category.name === activeCategory
+					let activeButtonClass = isActive ? 'bg-amber-400' : 'bg-black/10'
 					return (
-						<TouchableOpacity key={idx} className='flex items-center space-y-1'>
-							<View className='rounded-full p-[6px]'>
+						<TouchableOpacity
+							key={idx}
+							onPress={() => setActiveCategory(category.name)}
+							className='flex items-center space-y-1'>
+							<View className={`rounded-full p-[6px]  ${activeButtonClass}`}>
 								<Image
 									source={{ uri: category.image }}
 									style={{ width: hp(6), height: hp(6) }}
