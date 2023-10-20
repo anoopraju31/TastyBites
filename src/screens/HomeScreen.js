@@ -1,19 +1,28 @@
 import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { Image, ScrollView, Text, TextInput, View } from 'react-native'
+import {
+	ActivityIndicator,
+	Image,
+	ScrollView,
+	Text,
+	TextInput,
+	View,
+} from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import axios from 'axios'
 
-import { Categories, Recipes } from '../components'
+import { Categories, Loading, Recipes } from '../components'
 
 const HomeScreen = () => {
 	const [categories, setCategories] = useState([])
 	const [activeCategory, setActiveCategory] = useState('')
 	const [recipes, setRecipes] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	const getCategories = async () => {
 		try {
+			setIsLoading(true)
 			const res = await axios.get(
 				'https://www.themealdb.com/api/json/v1/1/categories.php',
 			)
@@ -24,20 +33,25 @@ const HomeScreen = () => {
 			}
 		} catch (error) {
 			console.error('error: ', error.message)
+			setIsLoading(false)
 		}
 	}
 
 	const getRecipes = async (category) => {
 		try {
+			setIsLoading(true)
+			setRecipes([])
 			const res = await axios.get(
 				`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
 			)
 
 			if (res && res.data) {
 				setRecipes(res.data.meals)
+				setIsLoading(false)
 			}
 		} catch (error) {
 			console.error('error: ', error.message)
+			setIsLoading(false)
 		}
 	}
 
@@ -110,7 +124,19 @@ const HomeScreen = () => {
 				</View>
 
 				{/* Recpies */}
-				<View>{recipes?.length !== 0 && <Recipes recipes={recipes} />}</View>
+				<View>
+					{recipes?.length !== 0 ? (
+						<Recipes recipes={recipes} />
+					) : (
+						<Loading
+							size='large'
+							animating={true}
+							hideWhenStopped={true}
+							color='lightgreen'
+							className='mt-20'
+						/>
+					)}
+				</View>
 			</ScrollView>
 		</View>
 	)
