@@ -23,9 +23,9 @@ const RecipeCard = ({ item, index, navigation }) => {
 					style={{
 						width: '100%',
 						height: hp(index % 3 === 0 ? 25 : 35),
-						borderRadius: 35,
+						borderRadius: 18,
 					}}
-					// className='bg-black/5'
+					className='bg-black/5'
 				/>
 
 				<Text

@@ -18,10 +18,9 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import axios from 'axios'
-import YouTubeIframe from 'react-native-youtube-iframe'
+import YoutubeIframe from 'react-native-youtube-iframe'
 
 import { Ingredient, Loading, Stat } from '../components'
-import YoutubeIframe from 'react-native-youtube-iframe'
 
 const RecipeDetailsScreen = (props) => {
 	const { idMeal, strMealThumb, strMeal } = props.route.params
@@ -36,7 +35,7 @@ const RecipeDetailsScreen = (props) => {
 
 			if (meal) {
 				for (let i = 1; i <= 20; i++) {
-					if (meal[`strIngredient${i}`] || meal[`strMeasure${i}`]) {
+					if (meal[`strIngredient${i}`]) {
 						ingredients.push({
 							id: i,
 							measure: meal[`strMeasure${i}`],
