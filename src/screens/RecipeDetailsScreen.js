@@ -18,8 +18,10 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import axios from 'axios'
+import YouTubeIframe from 'react-native-youtube-iframe'
 
 import { Ingredient, Loading, Stat } from '../components'
+import YoutubeIframe from 'react-native-youtube-iframe'
 
 const RecipeDetailsScreen = (props) => {
 	const { idMeal, strMealThumb, strMeal } = props.route.params
@@ -71,6 +73,13 @@ const RecipeDetailsScreen = (props) => {
 		}
 		getMealData(idMeal)
 	}, [idMeal])
+
+	const getYoutubeVideoId = (url) => {
+		const regex = /[?&]v=([^&]+)/
+		const match = url.match(regex)
+
+		return match && match[1] ? match[1] : null
+	}
 
 	return (
 		<ScrollView
@@ -193,6 +202,28 @@ const RecipeDetailsScreen = (props) => {
 							{meal?.strInstructions}
 						</Text>
 					</Animated.View>
+
+					{/* recipe video */}
+					{meal.strYoutube && (
+						<Animated.View
+							entering={FadeInDown.delay(400)
+								.duration(700)
+								.springify()
+								.damping(12)}
+							className='space-y-4'>
+							<Text
+								style={{ fontSize: hp(2.5) }}
+								className='font-bold flex-1 text-neutral-700'>
+								Recipe Video
+							</Text>
+							<View>
+								<YoutubeIframe
+									videoId={getYoutubeVideoId(meal.strYoutube)}
+									height={hp(30)}
+								/>
+							</View>
+						</Animated.View>
+					)}
 				</View>
 			)}
 		</ScrollView>
