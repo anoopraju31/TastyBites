@@ -118,7 +118,7 @@ const HomeScreen = () => {
 
 				{/* Recpies */}
 				<View>
-					{recipes?.length !== 0 && isLoading ? (
+					{recipes?.length !== 0 && !isLoading ? (
 						<Recipes recipes={recipes} />
 					) : (
 						<Loading
