@@ -2,7 +2,7 @@ import { Image, Pressable, Text } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 
-const RecipeCard = ({ item, index }) => {
+const RecipeCard = ({ item, index, navigation }) => {
 	const isEven = index % 2 === 0
 	return (
 		<Animated.View
@@ -16,6 +16,7 @@ const RecipeCard = ({ item, index }) => {
 					paddingLeft: isEven ? 0 : 8,
 					paddingRight: isEven ? 8 : 0,
 				}}
+				onPress={() => navigation.navigate('RecipeDetails', item)}
 				className='flex justify-center mb-4 space-y-1'>
 				<Image
 					source={{ uri: item.strMealThumb }}
