@@ -19,7 +19,7 @@ import { useNavigation } from '@react-navigation/native'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import axios from 'axios'
 
-import { Loading } from '../components'
+import { Loading, Stat } from '../components'
 
 const RecipeDetailsScreen = (props) => {
 	const { idMeal, strMealThumb, strMeal } = props.route.params
@@ -113,6 +113,19 @@ const RecipeDetailsScreen = (props) => {
 							className='font-medium flex-1 text-neutral-500'>
 							{meal?.strArea}
 						</Text>
+					</Animated.View>
+
+					{/* misc */}
+					<Animated.View
+						entering={FadeInDown.delay(100)
+							.duration(700)
+							.springify()
+							.damping(12)}
+						className='flex-row justify-around'>
+						<Stat Icon={ClockIcon} stat='35' title='Mins' />
+						<Stat Icon={UsersIcon} stat='03' title='Servings' />
+						<Stat Icon={FireIcon} stat='103' title='Cal' />
+						<Stat Icon={Square3Stack3DIcon} stat='' title='Easy' />
 					</Animated.View>
 				</View>
 			)}
