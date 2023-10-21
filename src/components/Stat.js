@@ -1,5 +1,4 @@
 import { Text, View } from 'react-native'
-import { ClockIcon } from 'react-native-heroicons/outline'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 const Stat = ({ Icon, stat, title }) => {
