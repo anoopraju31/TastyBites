@@ -18,10 +18,9 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import axios from 'axios'
-
 import { Ingredient, Loading, Stat } from '../components'
 
-const RecipeDetailsScreen = (props) => {
+export const RecipeDetailsScreen = (props) => {
 	const { idMeal, strMealThumb, strMeal } = props.route.params
 	const navigation = useNavigation()
 	const [isFavourite, setIsFavourite] = useState(false)
@@ -54,10 +53,10 @@ const RecipeDetailsScreen = (props) => {
 				const response = await axios.get(
 					`https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
 				)
-
+				console.log('got meal data: ', response.data)
 				if (response && response.data) {
 					const ingredients = getMealIngredients(response.data.meals[0])
-
+					console.log(ingredients)
 					setMeal({
 						...response.data.meals[0],
 						ingredients,
@@ -87,8 +86,8 @@ const RecipeDetailsScreen = (props) => {
 						width: wp(98),
 						height: hp(50),
 						borderRadius: 32,
-						borderBottomLeftRadius: 20,
-						borderBottomRightRadius: 20,
+						// borderBottomLeftRadius: 20,
+						// borderBottomRightRadius: 20,
 						marginTop: 4,
 					}}
 					sharedTransitionTag={strMeal}
@@ -181,5 +180,3 @@ const RecipeDetailsScreen = (props) => {
 		</ScrollView>
 	)
 }
-
-export default RecipeDetailsScreen
